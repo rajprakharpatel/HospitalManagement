@@ -2,8 +2,8 @@ from tkinter import *
 from tkinter import messagebox
 from tkinter import scrolledtext
 
-from EnterUID_GUI import *
-from JsonMng import loads, dumps
+from source.EnterUID_GUI import *
+from source.JsonMng import loads, dumps
 
 
 class Patient:

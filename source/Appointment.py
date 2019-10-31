@@ -1,8 +1,8 @@
 from tkinter import *
 from tkinter import scrolledtext, messagebox
 
-from EnterUID_GUI import uid
-from JsonMng import loads, dumps
+from source.EnterUID_GUI import *
+from source.JsonMng import loads, dumps
 
 
 class Appointment:

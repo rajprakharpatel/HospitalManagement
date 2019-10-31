@@ -1,8 +1,9 @@
 from tkinter import *
-from tkinter import scrolledtext
 from tkinter import messagebox
-from EnterUID_GUI import *
-from JsonMng import loads, dumps
+from tkinter import scrolledtext
+
+from source.EnterUID_GUI import *
+from source.JsonMng import loads, dumps
 
 
 class Doctor:
