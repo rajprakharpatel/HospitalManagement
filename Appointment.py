@@ -1,11 +1,11 @@
 from tkinter import *
 from tkinter import scrolledtext, messagebox
 
-from source.EnterUID_GUI import *
-from source.JsonMng import loads, dumps
+from EnterUID_GUI import *
+from JsonMng import loads, dumps
 
-from source.Doctor import Doctor
-from source.Patient import Patient
+from Doctor import Doctor
+from Patient import Patient
 
 
 class Appointment:
