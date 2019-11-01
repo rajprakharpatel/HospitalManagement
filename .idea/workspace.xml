@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0ff527fd-f029-46ff-8d92-6503092db72c" name="Default Changelist" comment="Revert &quot;2nd commit by pycharm&quot;&#10;&#10;This reverts commit 64827a03">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Appointment.py" beforeDir="false" afterPath="$PROJECT_DIR$/Appointment.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Doctor.py" beforeDir="false" afterPath="$PROJECT_DIR$/Doctor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Patient.py" beforeDir="false" afterPath="$PROJECT_DIR$/Patient.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/hospital_main.py" afterDir="false" />
-    </list>
+    <list default="true" id="0ff527fd-f029-46ff-8d92-6503092db72c" name="Default Changelist" comment="Revert &quot;2nd commit by pycharm&quot;&#10;&#10;This reverts commit 64827a03" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
