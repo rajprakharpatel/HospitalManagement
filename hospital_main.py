@@ -1,8 +1,8 @@
 from tkinter.ttk import *
 
-from source.Appointment import *
-from source.Doctor import *
-from source.Patient import *
+from Appointment import *
+from Doctor import *
+from Patient import *
 
 mainWindow = Tk()
 mainWindow.title("Hospital Management System")
