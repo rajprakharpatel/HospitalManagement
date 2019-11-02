@@ -1,6 +1,6 @@
+import json as j
 from tkinter import *
-from tkinter import messagebox
-from tkinter import scrolledtext
+from tkinter import messagebox, scrolledtext
 
 from EnterUID_GUI import *
 from JsonMng import loads, dumps
@@ -76,29 +76,38 @@ class Doctor:
     @classmethod
     def mod_rec(cls):
         k_ = uid() - 1
-        if cls.__rec_doc[k_] != "Deleted":
-            cls.__rec_doc.insert(k_, Doctor())
+        if k_ < len(cls.__rec_doc):
+            if cls.__rec_doc[k_] != "Deleted":
+                cls.__rec_doc.insert(k_, Doctor())
+            else:
+                messagebox.showerror("Error!", "Record Deleted Cannot be Modified")
         else:
-            messagebox.showerror("Error!", "Record Deleted Cannot be Modified")
+            messagebox.showerror("Error!", "Record does not exist")
 
     @classmethod
     def del_rec(cls):
-        if messagebox.askyesno("Deletion", "Are you sure"):
-            cls.__rec_doc.insert(uid() - 1, "Deleted")
-            messagebox.showinfo("info", "Deleted")
+        k_ = uid() - 1
+        if k_ < len(cls.__rec_doc):
+            if messagebox.askyesno("Deletion", "Are you sure"):
+                cls.__rec_doc.insert(k_, "Deleted")
+                messagebox.showinfo("Deleted", "Any associated appointments will have to be deleted manually")
+        else:
+            messagebox.showerror("Error!", "Record does not exist")
 
     @classmethod
     def disp_rec(cls):
-        t = uid() - 1
-        if t < len(cls.__rec_doc):
-            x = cls.__rec_doc[t]
+        k_ = uid() - 1
+        if k_ < len(cls.__rec_doc):
+            x = cls.__rec_doc[k_]
             if not isinstance(x, str):
                 ls = {"Name": x.name,
                       "Qualification": x.qualification,
                       "Age": x.age_,
                       "Gender": x.gender}
             else:
-                ls = cls.__rec_doc[t]
+                ls = cls.__rec_doc[k_]
+
+            ls = j.dumps(ls, indent=4)
             n_w = Tk()
             n_w.title("Record")
             n_w.geometry("500x250")
@@ -109,14 +118,17 @@ class Doctor:
         else:
             messagebox.showerror('No data found', 'There is no such entry in data base')
 
-
     @classmethod
     def get_rec(cls, n):
         if n < len(cls.__rec_doc):
             if cls.__rec_doc[n] != "Deleted":
                 return cls.__rec_doc[n]
+            else:
+                messagebox.showerror("No Patient with such ID",
+                                     " The record for that Doctor was deleted")
         else:
-            messagebox.showerror("No Doctor with such ID", " The record for that Doctor doesn't exist or was deleted")
+            messagebox.showerror("No Doctor with such ID",
+                                 "The record for that Doctor doesn't exist or was deleted")
 
     @classmethod
     def load_json(cls):

@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0ff527fd-f029-46ff-8d92-6503092db72c" name="Default Changelist" comment="Revert &quot;2nd commit by pycharm&quot;&#10;&#10;This reverts commit 64827a03" />
+    <list default="true" id="0ff527fd-f029-46ff-8d92-6503092db72c" name="Default Changelist" comment="Bug Fixes&#10;Proper Json Editing and proper formatting in display">
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/rajpr.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/rajpr.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Appointment.py" beforeDir="false" afterPath="$PROJECT_DIR$/Appointment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Doctor.py" beforeDir="false" afterPath="$PROJECT_DIR$/Doctor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Patient.py" beforeDir="false" afterPath="$PROJECT_DIR$/Patient.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hospital_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/hospital_main.py" afterDir="false" />
+    </list>
+    <list id="41bb4deb-cbdd-47cb-8dc3-4cb20ed323d8" name="Database" comment="Json DataFiles">
+      <change beforePath="$PROJECT_DIR$/app_rec.json" beforeDir="false" afterPath="$PROJECT_DIR$/app_rec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc_rec.json" beforeDir="false" afterPath="$PROJECT_DIR$/doc_rec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pat_rec.json" beforeDir="false" afterPath="$PROJECT_DIR$/pat_rec.json" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +56,7 @@
   <component name="ProjectId" id="1Sr8A3lTW1pSoKdOQ77JWN6Q4ct" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Classwork" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -66,7 +79,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.hospital_main (1)">
+  <component name="RunManager" selected="Python.hospital_main">
     <configuration name="Appointment" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="HospitalManagement" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -179,8 +192,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.hospital_main (1)" />
         <item itemvalue="Python.hospital_main" />
+        <item itemvalue="Python.hospital_main (1)" />
         <item itemvalue="Python.Doctor" />
         <item itemvalue="Python.EnterUID_GUI" />
         <item itemvalue="Python.Appointment" />
@@ -193,6 +206,7 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="0ff527fd-f029-46ff-8d92-6503092db72c" name="Default Changelist" comment="" />
+      <changelist id="41bb4deb-cbdd-47cb-8dc3-4cb20ed323d8" name="Database" comment="Json DataFiles" />
       <created>1572310206104</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -205,6 +219,8 @@
       <workItem from="1572540470612" duration="4061000" />
       <workItem from="1572547495706" duration="3085000" />
       <workItem from="1572596483913" duration="5663000" />
+      <workItem from="1572662671571" duration="5524000" />
+      <workItem from="1572670514461" duration="2840000" />
     </task>
     <task id="LOCAL-00001" summary="1st commit by pycharm">
       <created>1572547647771</created>
@@ -304,7 +320,7 @@
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/HospitalManagement$hospital_main.coverage" NAME="hospital_main Coverage Results" MODIFIED="1572556724927" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HospitalManagement$hospital_main.coverage" NAME="hospital_main Coverage Results" MODIFIED="1572673134576" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HospitalManagement$hospital_main__1_.coverage" NAME="hospital_main (1) Coverage Results" MODIFIED="1572600978136" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/source" />
     <SUITE FILE_PATH="coverage/HospitalManagement$EnterUID_GUI.coverage" NAME="EnterUID_GUI Coverage Results" MODIFIED="1572399538689" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HospitalManagement$doctor.coverage" NAME="doctor Coverage Results" MODIFIED="1572369840256" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

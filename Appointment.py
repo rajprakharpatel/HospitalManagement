@@ -1,21 +1,23 @@
+import json as j
 from tkinter import *
 from tkinter import scrolledtext, messagebox
 
+from Doctor import Doctor
 from EnterUID_GUI import *
 from JsonMng import loads, dumps
-
-from Doctor import Doctor
 from Patient import Patient
 
 
+# TODO(Modify Appointment when doctor or Patient is deleted or modified)
+# TODO(Manage dates using datetime library)
 class Appointment:
     __rec_app = list()
 
     def __init__(self, patient=None, doctor=None, date=None):
-        if patient and doctor and date is not None:
-            self.patient = self.patient
-            self.doctor = self.doctor
-            self.date_ = self.date
+        if isinstance(patient, Patient) and isinstance(doctor, Doctor) and isinstance(date, str):
+            self.patient = patient
+            self.doctor = doctor
+            self.date_ = date
         else:
             self.app_w = Tk()
             self.app_w.title("Appointment")
@@ -72,29 +74,37 @@ class Appointment:
     @classmethod
     def mod_rec(cls):
         k_ = uid() - 1
-        if cls.__rec_app[k_] != "Deleted":
-            cls.__rec_app.insert(k_, Appointment())
+        if k_ < len(cls.__rec_app):
+            if cls.__rec_app[k_] != "Deleted":
+                cls.__rec_app.insert(k_, Appointment())
+            else:
+                messagebox.showerror("Error!", "Record Deleted Cannot be Modified")
         else:
-            messagebox.showerror("Error!", "Record Deleted Cannot be Modified")
+            messagebox.showerror("Error!", "Record does not exist")
 
     @classmethod
     def del_rec(cls):
-        if messagebox.askyesno("Deletion", "Are you sure"):
-            cls.__rec_app.insert(uid() - 1, "Deleted")
-            messagebox.showinfo("info", "Deleted")
+        k_ = uid() - 1
+        if k_ < len(cls.__rec_app):
+            if messagebox.askyesno("Deletion", "Are you sure"):
+                cls.__rec_app.insert(uid() - 1, "Deleted")
+                messagebox.showinfo("info", "Deleted")
+        else:
+            messagebox.showerror("Error!", "Record does not exist")
 
     @classmethod
     def disp_rec(cls):
-        t = uid() - 1
-        if t < len(cls.__rec_app):
-            if not isinstance(cls.__rec_app[t], str):
-                ls = {"Patient ": cls.__rec_app[t].patient.str_value(),
-                      "Doctor": cls.__rec_app[t].doctor.str_value(),
-                      "Date": cls.__rec_app[t].date_,
+        k_ = uid() - 1
+        if k_ < len(cls.__rec_app):
+            if not isinstance(cls.__rec_app[k_], str):
+                ls = {"Patient ": cls.__rec_app[k_].patient.str_value(),
+                      "Doctor": cls.__rec_app[k_].doctor.str_value(),
+                      "Date": cls.__rec_app[k_].date_,
                       }
             else:
-                ls = cls.__rec_app[t]
+                ls = cls.__rec_app[k_]
 
+            ls = j.dumps(ls, indent=4)
             n_w = Tk()
             n_w.title("Record")
             n_w.geometry("500x250")
@@ -107,18 +117,23 @@ class Appointment:
 
     @classmethod
     def load_json(cls):
-        rec = loads("pat_rec.json")
+        rec = loads("app_rec.json")
         for i in rec:
-            cls.__rec_app.append(Appointment(patient=i["Patient"], doctor=i["Doctor"], date=i["Date"]))
+            cls.__rec_app.append(Appointment(patient=Patient(name=i["Patient"]["Name"], illness=i["Patient"]["Illness"],
+                                                             age=i["Patient"]["Age"], gender=i["Patient"]["Gender"]),
+                                             doctor=Doctor(name=i["Doctor"]["Name"], gender=i["Doctor"]["Gender"],
+                                                           qualification=i["Doctor"]["Qualification"],
+                                                           age=i["Doctor"]["Age"]),
+                                             date=i["Date"]))
 
     @classmethod
     def write_json(cls):
         rec = list()
         for i in cls.__rec_app:
-            rec.append({"Patient": i.patient,
-                        "Doctor": i.doctor,
-                        "Date": i.date})
-        dumps("pat_rec.json", rec)
+            rec.append({"Patient": i.patient.str_value(),
+                        "Doctor": i.doctor.str_value(),
+                        "Date": i.date_})
+        dumps("app_rec.json", rec)
 
 
 if __name__ == '__main__':

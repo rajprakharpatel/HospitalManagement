@@ -4,9 +4,14 @@ from Appointment import *
 from Doctor import *
 from Patient import *
 
+# TODO(Implement Database)
+# TODO(improve UID implementation)
 mainWindow = Tk()
 mainWindow.title("Hospital Management System")
 mainWindow.geometry('960x540')
+Doctor.load_json()
+Patient.load_json()
+Appointment.load_json()
 menu = Menu(mainWindow)
 menu.add_command(label='Save to database', command=lambda: [Doctor.write_json(), Appointment.write_json(),
                                                             Patient.write_json()])
@@ -17,8 +22,6 @@ def doctor():
     doc_mng = Tk()
     doc_mng.title("Doctor Management")
     doc_mng.geometry('960x540')
-
-    Doctor.load_json()
 
     def destroy_():
         doc_mng.quit()

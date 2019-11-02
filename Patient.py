@@ -1,3 +1,4 @@
+import json as j
 from tkinter import *
 from tkinter import messagebox
 from tkinter import scrolledtext
@@ -53,7 +54,6 @@ class Patient:
             self.pa_w.mainloop()
 
     def str_value(self):
-        # TODO(add address field for student?)
         return {"Name": self.name,
                 "Illness": self.illness,
                 "Age": self.age_,
@@ -77,29 +77,37 @@ class Patient:
     @classmethod
     def mod_rec(cls):
         k_ = uid() - 1
-        if cls.__rec_pat[k_] != "Deleted":
-            cls.__rec_pat.insert(k_, Patient())
+        if k_ < len(cls.__rec_pat):
+            if cls.__rec_pat[k_] != "Deleted":
+                cls.__rec_pat.insert(k_, Patient())
+            else:
+                messagebox.showerror("Error!", "Record Deleted Cannot be Modified")
         else:
-            messagebox.showerror("Error!", "Record Deleted Cannot be Modified")
+            messagebox.showerror("Error!", "Record does not exist")
 
     @classmethod
     def del_rec(cls):
-        if messagebox.askyesno("Deletion", "Are you sure"):
-            cls.__rec_pat.insert(uid() - 1, "Deleted")
-            messagebox.showinfo("info", "Deleted")
+        k_ = uid() - 1
+        if k_ < len(cls.__rec_pat):
+            if messagebox.askyesno("Deletion", "Are you sure"):
+                cls.__rec_pat.insert(k_, "Deleted")
+                messagebox.showinfo("Deleted", "Any associated appointments will have to be deleted manually")
+        else:
+            messagebox.showerror("Error!", "Record does not exist")
 
     @classmethod
     def disp_rec(cls):
-        t = uid() - 1
-        if t < len(cls.__rec_pat):
-            if not isinstance(cls.__rec_pat[t], str):
-                ls = {"Name": cls.__rec_pat[t].name,
-                      "Qualification": cls.__rec_pat[t].illness,
-                      "Age": cls.__rec_pat[t].age_,
-                      "Gender": cls.__rec_pat[t].gender}
+        k_ = uid() - 1
+        if k_ < len(cls.__rec_pat):
+            if not isinstance(cls.__rec_pat[k_], str):
+                ls = {"Name": cls.__rec_pat[k_].name,
+                      "Qualification": cls.__rec_pat[k_].illness,
+                      "Age": cls.__rec_pat[k_].age_,
+                      "Gender": cls.__rec_pat[k_].gender}
             else:
-                ls = cls.__rec_pat[t]
+                ls = cls.__rec_pat[k_]
 
+            ls = j.dumps(ls, indent=4)
             n_w = Tk()
             n_w.title("Record")
             n_w.geometry("500x250")
@@ -110,14 +118,17 @@ class Patient:
         else:
             messagebox.showerror('No data found', 'There is no such entry in data base')
 
-
     @classmethod
     def get_rec(cls, n):
         if n < len(cls.__rec_pat):
             if cls.__rec_pat[n] != "Deleted":
                 return cls.__rec_pat[n]
+            else:
+                messagebox.showerror("No Patient with such ID",
+                                     " The record for that Patient was deleted")
         else:
-            messagebox.showerror("No Patient with such ID", " The record for that Patient doesn't exist or was deleted")
+            messagebox.showerror("No Patient with such ID",
+                                 " The record for that Patient doesn't exist")
 
     @classmethod
     def load_json(cls):
