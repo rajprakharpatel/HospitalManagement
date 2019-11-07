@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0ff527fd-f029-46ff-8d92-6503092db72c" name="Default Changelist" comment="Bug Fixes&#10;Proper Json Editing and proper formatting in display">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/rajpr.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/rajpr.xml" afterDir="false" />
+    <list default="true" id="0ff527fd-f029-46ff-8d92-6503092db72c" name="Default Changelist" comment="implementation of inheritance and functional programming&#10;Created abstract class Record as base for Doctor, Patient and Appointment Records &#10;Various bug fixes and code optimizations">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Appointment.py" beforeDir="false" afterPath="$PROJECT_DIR$/Appointment.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Doctor.py" beforeDir="false" afterPath="$PROJECT_DIR$/Doctor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Patient.py" beforeDir="false" afterPath="$PROJECT_DIR$/Patient.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/hospital_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Record.py" beforeDir="false" afterPath="$PROJECT_DIR$/Record.py" afterDir="false" />
     </list>
     <list id="41bb4deb-cbdd-47cb-8dc3-4cb20ed323d8" name="Database" comment="Json DataFiles">
       <change beforePath="$PROJECT_DIR$/app_rec.json" beforeDir="false" afterPath="$PROJECT_DIR$/app_rec.json" afterDir="false" />
@@ -40,12 +36,17 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="package.json" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Rajprakhar &lt;rajprakhar2000@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="master" />
@@ -80,28 +81,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.hospital_main">
-    <configuration name="Appointment" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="HospitalManagement" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Appointment.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="Doctor" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="HospitalManagement" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -124,7 +103,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="EnterUID_GUI" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="Patient" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="HospitalManagement" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -137,7 +116,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/EnterUID_GUI.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Patient.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -190,13 +169,35 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="scrtch" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="HospitalManagement" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scrtch.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.hospital_main" />
-        <item itemvalue="Python.hospital_main (1)" />
         <item itemvalue="Python.Doctor" />
-        <item itemvalue="Python.EnterUID_GUI" />
-        <item itemvalue="Python.Appointment" />
+        <item itemvalue="Python.scrtch" />
+        <item itemvalue="Python.Patient" />
+        <item itemvalue="Python.hospital_main (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -220,7 +221,14 @@
       <workItem from="1572547495706" duration="3085000" />
       <workItem from="1572596483913" duration="5663000" />
       <workItem from="1572662671571" duration="5524000" />
-      <workItem from="1572670514461" duration="2840000" />
+      <workItem from="1572670514461" duration="3144000" />
+      <workItem from="1572686226520" duration="2463000" />
+      <workItem from="1572730923618" duration="388000" />
+      <workItem from="1572767311817" duration="55000" />
+      <workItem from="1572767382031" duration="2378000" />
+      <workItem from="1572865334362" duration="3298000" />
+      <workItem from="1573113652059" duration="7086000" />
+      <workItem from="1573120789201" duration="5745000" />
     </task>
     <task id="LOCAL-00001" summary="1st commit by pycharm">
       <created>1572547647771</created>
@@ -243,7 +251,21 @@
       <option name="project" value="LOCAL" />
       <updated>1572587259395</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Bug Fixes in Json Editing&#10;and Proper formatting in record display">
+      <created>1572673459456</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1572673459456</updated>
+    </task>
+    <task id="LOCAL-00005" summary="implementation of inheritance and functional programming&#10;Created abstract class Record as base for Doctor, Patient and Appointment Records &#10;Various bug fixes and code optimizations">
+      <created>1573125225909</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1573125225909</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -289,11 +311,6 @@
         </entry>
       </map>
     </option>
-    <option name="OPEN_TABS">
-      <set>
-        <option value="1" />
-      </set>
-    </option>
     <option name="RECENT_FILTERS">
       <map>
         <entry key="Branch">
@@ -314,18 +331,21 @@
     <MESSAGE value="1st commit by pycharm" />
     <MESSAGE value="2nd commit by pycharm" />
     <MESSAGE value="Revert &quot;2nd commit by pycharm&quot;&#10;&#10;This reverts commit 64827a03" />
-    <option name="LAST_COMMIT_MESSAGE" value="Revert &quot;2nd commit by pycharm&quot;&#10;&#10;This reverts commit 64827a03" />
+    <MESSAGE value="Bug Fixes in Json Editing&#10;and Proper formatting in record display" />
+    <MESSAGE value="implementation of inheritance and functional programming&#10;Created abstract class Record as base for Doctor, Patient and Appointment Records &#10;Various bug fixes and code optimizations" />
+    <option name="LAST_COMMIT_MESSAGE" value="implementation of inheritance and functional programming&#10;Created abstract class Record as base for Doctor, Patient and Appointment Records &#10;Various bug fixes and code optimizations" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/HospitalManagement$hospital_main.coverage" NAME="hospital_main Coverage Results" MODIFIED="1572673134576" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HospitalManagement$hospital_main.coverage" NAME="hospital_main Coverage Results" MODIFIED="1573123600345" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HospitalManagement$hospital_main__1_.coverage" NAME="hospital_main (1) Coverage Results" MODIFIED="1572600978136" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/source" />
     <SUITE FILE_PATH="coverage/HospitalManagement$EnterUID_GUI.coverage" NAME="EnterUID_GUI Coverage Results" MODIFIED="1572399538689" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HospitalManagement$doctor.coverage" NAME="doctor Coverage Results" MODIFIED="1572369840256" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/HospitalManagement$Patient.coverage" NAME="Patient Coverage Results" MODIFIED="1572371460644" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HospitalManagement$Patient.coverage" NAME="Patient Coverage Results" MODIFIED="1572769637959" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HospitalManagement$Appointment.coverage" NAME="Appointment Coverage Results" MODIFIED="1572372541706" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/HospitalManagement$Doctor.coverage" NAME="Doctor Coverage Results" MODIFIED="1572408384033" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HospitalManagement$Doctor.coverage" NAME="Doctor Coverage Results" MODIFIED="1573121224872" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HospitalManagement$scrtch.coverage" NAME="scrtch Coverage Results" MODIFIED="1573115173459" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

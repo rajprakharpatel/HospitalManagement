@@ -1,4 +1,6 @@
+import json as j
 import tkinter as tk
+from tkinter import scrolledtext
 
 
 class EntryWithPlaceholder(tk.Entry):
@@ -53,6 +55,17 @@ def uid():
 
     msg.mainloop()
     return int(k)
+
+
+def recDisp(ls):
+    ls = j.dumps(ls, indent=4)
+    n_w = tk.Tk()
+    n_w.title("Record")
+    n_w.geometry("500x250")
+    sc_txt = scrolledtext.ScrolledText(n_w, width=50, height=20)
+    sc_txt.grid(column=0, row=3)
+    sc_txt.insert(tk.INSERT, ls)
+    n_w.mainloop()
 
 
 if __name__ == '__main__':

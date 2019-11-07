@@ -1,14 +1,8 @@
-import json as j
-from tkinter import *
-from tkinter import messagebox
-from tkinter import scrolledtext
-
-from EnterUID_GUI import *
-from JsonMng import loads, dumps
+from Record import *
 
 
-class Patient:
-    __rec_pat = list()
+class Patient(Record):
+    __rec = list()
 
     def __init__(self, name=None, illness=None, gender=None, age=None):
         if name and illness and gender and age is not None:
@@ -71,26 +65,22 @@ class Patient:
 
     @classmethod
     def add_rec(cls):
-        cls.__rec_pat.append(Patient())
-        messagebox.showinfo("Unique id", len(cls.__rec_pat))
+        cls.__rec.append(Patient())
+        messagebox.showinfo("Unique id", len(cls.__rec))
 
     @classmethod
     def mod_rec(cls):
         k_ = uid() - 1
-        if k_ < len(cls.__rec_pat):
-            if cls.__rec_pat[k_] != "Deleted":
-                cls.__rec_pat.insert(k_, Patient())
-            else:
-                messagebox.showerror("Error!", "Record Deleted Cannot be Modified")
-        else:
-            messagebox.showerror("Error!", "Record does not exist")
+        x = cls.get_rec(k_)
+        if x is not None:
+            cls.__rec.insert(k_, Patient())
 
     @classmethod
     def del_rec(cls):
         k_ = uid() - 1
-        if k_ < len(cls.__rec_pat):
+        if k_ < len(cls.__rec):
             if messagebox.askyesno("Deletion", "Are you sure"):
-                cls.__rec_pat.insert(k_, "Deleted")
+                cls.__rec.insert(k_, "Deleted")
                 messagebox.showinfo("Deleted", "Any associated appointments will have to be deleted manually")
         else:
             messagebox.showerror("Error!", "Record does not exist")
@@ -98,31 +88,15 @@ class Patient:
     @classmethod
     def disp_rec(cls):
         k_ = uid() - 1
-        if k_ < len(cls.__rec_pat):
-            if not isinstance(cls.__rec_pat[k_], str):
-                ls = {"Name": cls.__rec_pat[k_].name,
-                      "Qualification": cls.__rec_pat[k_].illness,
-                      "Age": cls.__rec_pat[k_].age_,
-                      "Gender": cls.__rec_pat[k_].gender}
-            else:
-                ls = cls.__rec_pat[k_]
-
-            ls = j.dumps(ls, indent=4)
-            n_w = Tk()
-            n_w.title("Record")
-            n_w.geometry("500x250")
-            sc_txt = scrolledtext.ScrolledText(n_w, width=50, height=20)
-            sc_txt.grid(column=0, row=3)
-            sc_txt.insert(INSERT, ls)
-            n_w.mainloop()
-        else:
-            messagebox.showerror('No data found', 'There is no such entry in data base')
+        x = cls.get_rec(k_)
+        if x is not None:
+            recDisp(x.str_value())
 
     @classmethod
     def get_rec(cls, n):
-        if n < len(cls.__rec_pat):
-            if cls.__rec_pat[n] != "Deleted":
-                return cls.__rec_pat[n]
+        if n < len(cls.__rec):
+            if cls.__rec[n] != "Deleted":
+                return cls.__rec[n]
             else:
                 messagebox.showerror("No Patient with such ID",
                                      " The record for that Patient was deleted")
@@ -134,18 +108,14 @@ class Patient:
     def load_json(cls):
         rec = loads("pat_rec.json")
         for i in rec:
-            cls.__rec_pat.append(Patient(name=i["Name"], illness=i["Illness"],
-                                         age=i["Age"], gender=i["Gender"]))
+            cls.__rec.append(Patient(name=i["Name"], illness=i["Illness"],
+                                     age=i["Age"], gender=i["Gender"]))
 
     @classmethod
     def write_json(cls):
         rec = list()
-        for i in cls.__rec_pat:
-            rec.append({"Name": i.name,
-                        "Illness": i.illness,
-                        "Age": i.age_,
-                        "Gender": i.gender})
-        dumps("pat_rec.json", rec)
+        for i in cls.__rec:
+            rec.append(i.str_value())
 
 
 if __name__ == '__main__':

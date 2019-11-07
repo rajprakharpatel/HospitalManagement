@@ -1,17 +1,12 @@
-import json as j
-from tkinter import *
-from tkinter import scrolledtext, messagebox
-
 from Doctor import Doctor
-from EnterUID_GUI import *
-from JsonMng import loads, dumps
 from Patient import Patient
+from Record import *
 
 
 # TODO(Modify Appointment when doctor or Patient is deleted or modified)
 # TODO(Manage dates using datetime library)
-class Appointment:
-    __rec_app = list()
+class Appointment(Record):
+    __rec = list()
 
     def __init__(self, patient=None, doctor=None, date=None):
         if isinstance(patient, Patient) and isinstance(doctor, Doctor) and isinstance(date, str):
@@ -45,11 +40,11 @@ class Appointment:
 
             self.app_w.mainloop()
 
-    # def __str__(self):
-    #     return {"Patient": self.patient,
-    #             "Doctor": self.doctor,
-    #             "Date": self.date,
-    #             }
+    def str_value(self):
+        return {"Patient ": self.patient.str_value(),
+                "Doctor": self.doctor.str_value(),
+                "Date": self.date_
+                }
 
     def destroy(self):
         self.app_w.quit()
@@ -68,26 +63,22 @@ class Appointment:
         if a.doctor is None or a.patient is None:
             messagebox.showinfo("Appointment not created", "invalid entries")
         else:
-            cls.__rec_app.append(a)
-            messagebox.showinfo("Unique id", len(cls.__rec_app))
+            cls.__rec.append(a)
+            messagebox.showinfo("Unique id", len(cls.__rec))
 
     @classmethod
     def mod_rec(cls):
         k_ = uid() - 1
-        if k_ < len(cls.__rec_app):
-            if cls.__rec_app[k_] != "Deleted":
-                cls.__rec_app.insert(k_, Appointment())
-            else:
-                messagebox.showerror("Error!", "Record Deleted Cannot be Modified")
-        else:
-            messagebox.showerror("Error!", "Record does not exist")
+        x = cls.get_rec(k_)
+        if x is not None:
+            cls.__rec.insert(k_, Appointment())
 
     @classmethod
     def del_rec(cls):
         k_ = uid() - 1
-        if k_ < len(cls.__rec_app):
+        if k_ < len(cls.__rec):
             if messagebox.askyesno("Deletion", "Are you sure"):
-                cls.__rec_app.insert(uid() - 1, "Deleted")
+                cls.__rec.insert(uid() - 1, "Deleted")
                 messagebox.showinfo("info", "Deleted")
         else:
             messagebox.showerror("Error!", "Record does not exist")
@@ -95,45 +86,38 @@ class Appointment:
     @classmethod
     def disp_rec(cls):
         k_ = uid() - 1
-        if k_ < len(cls.__rec_app):
-            if not isinstance(cls.__rec_app[k_], str):
-                ls = {"Patient ": cls.__rec_app[k_].patient.str_value(),
-                      "Doctor": cls.__rec_app[k_].doctor.str_value(),
-                      "Date": cls.__rec_app[k_].date_,
-                      }
-            else:
-                ls = cls.__rec_app[k_]
+        x = cls.get_rec(k_)
+        if x is not None:
+            recDisp(x.str_value())
 
-            ls = j.dumps(ls, indent=4)
-            n_w = Tk()
-            n_w.title("Record")
-            n_w.geometry("500x250")
-            sc_txt = scrolledtext.ScrolledText(n_w, width=50, height=20)
-            sc_txt.grid(column=0, row=3)
-            sc_txt.insert(INSERT, ls)
-            n_w.mainloop()
+    @classmethod
+    def get_rec(cls, n):
+        if n < len(cls.__rec):
+            if cls.__rec[n] != "Deleted":
+                return cls.__rec[n]
+            else:
+                messagebox.showerror("No Appointment with such ID",
+                                     " The record of Appointment was deleted")
         else:
-            messagebox.showerror('No data found', 'There is no such entry in data base')
+            messagebox.showerror("No Appointment with such ID",
+                                 "The record of Appointment doesn't exist")
 
     @classmethod
     def load_json(cls):
         rec = loads("app_rec.json")
         for i in rec:
-            cls.__rec_app.append(Appointment(patient=Patient(name=i["Patient"]["Name"], illness=i["Patient"]["Illness"],
-                                                             age=i["Patient"]["Age"], gender=i["Patient"]["Gender"]),
-                                             doctor=Doctor(name=i["Doctor"]["Name"], gender=i["Doctor"]["Gender"],
-                                                           qualification=i["Doctor"]["Qualification"],
-                                                           age=i["Doctor"]["Age"]),
-                                             date=i["Date"]))
+            cls.__rec.append(Appointment(patient=Patient(name=i["Patient"]["Name"], illness=i["Patient"]["Illness"],
+                                                         age=i["Patient"]["Age"], gender=i["Patient"]["Gender"]),
+                                         doctor=Doctor(name=i["Doctor"]["Name"], gender=i["Doctor"]["Gender"],
+                                                       qualification=i["Doctor"]["Qualification"],
+                                                       age=i["Doctor"]["Age"]),
+                                         date=i["Date"]))
 
     @classmethod
     def write_json(cls):
         rec = list()
-        for i in cls.__rec_app:
-            rec.append({"Patient": i.patient.str_value(),
-                        "Doctor": i.doctor.str_value(),
-                        "Date": i.date_})
-        dumps("app_rec.json", rec)
+        for i in cls.__rec:
+            rec.append(i.str_value())
 
 
 if __name__ == '__main__':

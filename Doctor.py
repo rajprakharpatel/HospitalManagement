@@ -1,13 +1,8 @@
-import json as j
-from tkinter import *
-from tkinter import messagebox, scrolledtext
-
-from EnterUID_GUI import *
-from JsonMng import loads, dumps
+from Record import *
 
 
-class Doctor:
-    __rec_doc = list()
+class Doctor(Record):
+    __rec = list()
 
     def __init__(self, name=None, qualification=None, gender=None, age=None):
         if name is not None:
@@ -70,26 +65,22 @@ class Doctor:
 
     @classmethod
     def add_rec(cls):
-        cls.__rec_doc.append(Doctor())
-        messagebox.showinfo("Unique id", len(cls.__rec_doc))
+        cls.__rec.append(Doctor())
+        messagebox.showinfo("Unique id", len(cls.__rec))
 
     @classmethod
     def mod_rec(cls):
         k_ = uid() - 1
-        if k_ < len(cls.__rec_doc):
-            if cls.__rec_doc[k_] != "Deleted":
-                cls.__rec_doc.insert(k_, Doctor())
-            else:
-                messagebox.showerror("Error!", "Record Deleted Cannot be Modified")
-        else:
-            messagebox.showerror("Error!", "Record does not exist")
+        x = cls.get_rec(k_)
+        if x is not None:
+            cls.__rec.insert(k_, Doctor())
 
     @classmethod
     def del_rec(cls):
         k_ = uid() - 1
-        if k_ < len(cls.__rec_doc):
+        if k_ < len(cls.__rec):
             if messagebox.askyesno("Deletion", "Are you sure"):
-                cls.__rec_doc.insert(k_, "Deleted")
+                cls.__rec.insert(k_, "Deleted")
                 messagebox.showinfo("Deleted", "Any associated appointments will have to be deleted manually")
         else:
             messagebox.showerror("Error!", "Record does not exist")
@@ -97,54 +88,34 @@ class Doctor:
     @classmethod
     def disp_rec(cls):
         k_ = uid() - 1
-        if k_ < len(cls.__rec_doc):
-            x = cls.__rec_doc[k_]
-            if not isinstance(x, str):
-                ls = {"Name": x.name,
-                      "Qualification": x.qualification,
-                      "Age": x.age_,
-                      "Gender": x.gender}
-            else:
-                ls = cls.__rec_doc[k_]
-
-            ls = j.dumps(ls, indent=4)
-            n_w = Tk()
-            n_w.title("Record")
-            n_w.geometry("500x250")
-            sc_txt = scrolledtext.ScrolledText(n_w, width=50, height=20)
-            sc_txt.grid(column=0, row=3)
-            sc_txt.insert(INSERT, ls)
-            n_w.mainloop()
-        else:
-            messagebox.showerror('No data found', 'There is no such entry in data base')
+        x = cls.get_rec(k_)
+        if x is not None:
+            recDisp(x.str_value())
 
     @classmethod
     def get_rec(cls, n):
-        if n < len(cls.__rec_doc):
-            if cls.__rec_doc[n] != "Deleted":
-                return cls.__rec_doc[n]
+        if n < len(cls.__rec):
+            if cls.__rec[n] != "Deleted":
+                return cls.__rec[n]
             else:
-                messagebox.showerror("No Patient with such ID",
+                messagebox.showerror("No Doctor with such ID",
                                      " The record for that Doctor was deleted")
         else:
             messagebox.showerror("No Doctor with such ID",
-                                 "The record for that Doctor doesn't exist or was deleted")
+                                 "The record for that Doctor doesn't exist")
 
     @classmethod
     def load_json(cls):
         rec = loads("doc_rec.json")
         for i in rec:
-            cls.__rec_doc.append(Doctor(name=i["Name"], qualification=i["Qualification"],
-                                        age=i["Age"], gender=i["Gender"]))
+            cls.__rec.append(Doctor(name=i["Name"], qualification=i["Qualification"],
+                                    age=i["Age"], gender=i["Gender"]))
 
     @classmethod
     def write_json(cls):
         rec = list()
-        for i in cls.__rec_doc:
-            rec.append({"Name": i.name,
-                        "Qualification": i.qualification,
-                        "Age": i.age_,
-                        "Gender": i.gender})
+        for i in cls.__rec:
+            rec.append(i.str_value())
         dumps("doc_rec.json", rec)
 
 
